@@ -58,37 +58,40 @@ let geoObjects = new EntityCollection({
 
 for (const [name, entity_opt] of ENTITY_OPTIONS) {
 
-    Object3d.loadObj(`http://localhost:8000/examples/geoObject/penguin.obj`).then(object3d =>{
-        const entities = [];
-        object3d.src = 'http://localhost:8000/examples/geoObject/penguin.png'
-        const defaultOptions = (i) => ({
-            name: "sat-" + i,
-            geoObject: {
-                scale: 1,
-                instanced: true,
-                tag: name,
-                color: colors[i % 7],
-                object3d
-            },
-            'properties': {
-                'color': colors[i % 7]
-            }
-        });
+    Object3d.loadObj(`http://localhost:8000/examples/geoObject/penguin.obj`).then(objs => {
+
+        objs.forEach((object3d) => {
+            const entities = [];
+            // object3d.src = 'http://localhost:8000/examples/geoObject/penguin.png'
+            const defaultOptions = (i) => ({
+                name: "sat-" + i,
+                geoObject: {
+                    scale: 1,
+                    instanced: true,
+                    tag: name,
+                    color: colors[i % 7],
+                    object3d
+                },
+                'properties': {
+                    'color': colors[i % 7]
+                }
+            });
 
 
-        ENTITY[name] = (i) => {
-            const o = defaultOptions(i);
-            return {
-                ...o,
-                ...(entity_opt && entity_opt.cb ? entity_opt.cb(o, i) : {})
+            ENTITY[name] = (i) => {
+                const o = defaultOptions(i);
+                return {
+                    ...o,
+                    ...(entity_opt && entity_opt.cb ? entity_opt.cb(o, i) : {})
+                };
             };
-        };
 
-        for (let i = 0; i < COUNT; i++) {
-            entities.push(new Entity(ENTITY[name](i)));
-        }
-        geoObjects.addEntities(entities);
+            for (let i = 0; i < COUNT; i++) {
+                entities.push(new Entity(ENTITY[name](i)));
+            }
+            geoObjects.addEntities(entities);
 
+        });
     });
 }
 
