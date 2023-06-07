@@ -2,14 +2,7 @@ import globus from './globus.js?raw'
 import style from './style.css?raw'
 import {Sandpack} from "@codesandbox/sandpack-react";
 
-export default function Entry({entry, resources}) {
-    const files = {
-        ...resources,
-        "style.css": style,
-        "index.js": entry,
-        "globus.js": globus
-    }
-console.log(files)
+export default function GlobusSandbox({files, externalResources, options}) {
     return (
         <Sandpack
             customSetup={{
@@ -24,8 +17,14 @@ console.log(files)
                 closableTabs: true,
                 editorHeight: 700,
                 editorWidthPercentage: 40,
+                ...options
             }}
-            files={files}
+            files={{
+                "style.css": style,
+                "globus.js": globus,
+                ...files
+            }}
+            externalResources={externalResources}
             theme="light"
             template="vanilla"
         />

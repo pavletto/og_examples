@@ -1,8 +1,5 @@
-import globus from '../../globus.js';
+import globus from './globus.js';
 import {Entity, EntityCollection, Object3d, utils} from "@openglobus/og";
-
-"use strict";
-
 
 let COUNT = 10,
     ENTITY = {},
@@ -58,11 +55,11 @@ let geoObjects = new EntityCollection({
 
 for (const [name, entity_opt] of ENTITY_OPTIONS) {
 
-    Object3d.loadObj(`http://localhost:8000/examples/geoObject/penguin.obj`).then(objs => {
+    Object3d.loadObj(`https://pavletto.github.io/og_resources/geo_object/penguin.obj`).then(objs => {
 
         objs.forEach((object3d) => {
             const entities = [];
-            // object3d.src = 'http://localhost:8000/examples/geoObject/penguin.png'
+            object3d.src = 'https://pavletto.github.io/og_resources/geo_object/penguin.png'
             const defaultOptions = (i) => ({
                 name: "sat-" + i,
                 geoObject: {
@@ -110,10 +107,6 @@ geoObjects.events.on("mouseleave", function (e) {
 
 geoObjects.addTo(globus.planet);
 
-// globus.planet.flyLonLat(new LonLat(0, 0, 2000000));
-window.globus = globus;
-window.ENTITY_OPTIONS = ENTITY_OPTIONS;
-
 const types = [...ENTITY_OPTIONS.keys()].reduce((acc, name) => {
     return [...acc, ...new Array(ENTITY_OPTIONS.get(name).countRation).fill(name)];
 }, []);
@@ -133,24 +126,5 @@ globus.planet.events.on("draw", () => {
 
     if (span && entities.length != span.innerText) {
         span.innerText = `Instance count: ${entities.length}`;
-    }
-
-    for (let i = 0; i < entities.length; i++) {
-        let e = entities[i],
-            c = e.getLonLat();
-        switch (e.geoObject.tag) {
-            //         case 'satellite':
-            //             e.setLonLat(new LonLat(c.lon - 0.03, c.lat < -89 ? 90 : c.lat - 0.03, c.height));
-            //             e.geoObject.setYaw(e.geoObject._yaw + 0.1);
-            //             e.geoObject.setPitch(e.geoObject._pitch + 0.1);
-            //             break;
-            //         case 'farmplane':
-            //             e.setLonLat(new LonLat(c.lon - 0.01, c.lat > 89 ? -90 : c.lat + 0.01, c.height));
-            //             break;
-            default :
-                // e.geoObject.setYaw(e.geoObject._yaw + 0.1);
-                break;
-            //
-        }
     }
 });
