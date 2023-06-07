@@ -59,7 +59,7 @@ for (const [name, entity_opt] of ENTITY_OPTIONS) {
 
         objs.forEach((object3d) => {
             const entities = [];
-            object3d.src = 'https://pavletto.github.io/og_resources/geo_object/penguin.png'
+            // object3d.src = 'https://pavletto.github.io/og_resources/geo_object/penguin.png'
             const defaultOptions = (i) => ({
                 name: "sat-" + i,
                 geoObject: {
