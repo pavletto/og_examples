@@ -4,7 +4,7 @@ import { Globe, utils } from '@openglobus/og';
 import { GlobusTerrain } from '@openglobus/og/terrain';
 import { XYZ } from '@openglobus/og/layer';
 
-const  osm = new XYZ("OpenStreetMap", {
+const osm = new XYZ("OpenStreetMap", {
     isBaseLayer: true,
     url: "//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
     visibility: true,
@@ -43,11 +43,11 @@ const sat = new XYZ("sat", {
         });
     }
 });
-const  globus = new Globe({
+const globus = new Globe({
     target: 'app',
     name: "Earth",
     terrain: new GlobusTerrain(),
-    layers: [sat],
+    layers: [osm, sat],
     autoActivate: true
 });
 
