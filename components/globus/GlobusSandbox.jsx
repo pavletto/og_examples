@@ -21,12 +21,12 @@ export default function GlobusSandbox({files, externalResources, options}) {
             }}
             files={{
                 "style.css": style,
+                ...files,
                 "globus.js": globus,
-                ...files
             }}
             externalResources={externalResources}
             theme="light"
-            template="vanilla"
+            template="react"
         />
     )
 }

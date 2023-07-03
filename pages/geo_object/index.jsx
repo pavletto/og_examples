@@ -4,7 +4,7 @@ import geo_object from './geo_object.js?raw'
 export default function GeoObjectExample() {
     return (
         <GlobusSandbox files={{
-            "index.js": geo_object
+            "App.js": geo_object
         }}/>
     )
 }

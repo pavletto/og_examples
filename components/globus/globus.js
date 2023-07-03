@@ -43,13 +43,13 @@ const sat = new XYZ("sat", {
         });
     }
 });
-const globus = new Globe({
+const globus = {
     target: 'app',
     name: "Earth",
     terrain: new GlobusTerrain(),
     layers: [osm, sat],
     autoActivate: true
-});
+};
 
-globus.planet.atmosphereEnabled = true;
+// globus.planet.atmosphereEnabled = true;
 export default globus;
