@@ -7,7 +7,7 @@ export default function GlobusSandbox({files, externalResources, options}) {
         <Sandpack
             customSetup={{
                 dependencies: {
-                    '@openglobus/og': '0.16.3',
+                    '@openglobus/og': '*',
                 },
             }}
             options={{

@@ -1,8 +1,8 @@
 import '@openglobus/og/css/og.css';
 import './style.css';
-import { Globe, utils } from '@openglobus/og';
-import { GlobusTerrain } from '@openglobus/og/terrain';
-import { XYZ } from '@openglobus/og/layer';
+import {Globe, utils} from '@openglobus/og';
+import {GlobusTerrain} from '@openglobus/og/terrain';
+import {XYZ} from '@openglobus/og/layer';
 
 const osm = new XYZ("OpenStreetMap", {
     isBaseLayer: true,
@@ -30,7 +30,7 @@ const sat = new XYZ("sat", {
     visibility: true,
     attribution: `<a href="http://www.bing.com" target="_blank"><img title="Bing Imagery" src="https://sandcastle.cesium.com/CesiumUnminified/Assets/Images/bing_maps_credit.png" alt="Bing"></a> © 2021 Microsoft Corporation`,
     maxNativeZoom: 19,
-    defaultTextures: [{ color: "#001522" }, { color: "#E4E6F3" }],
+    defaultTextures: [{color: "#001522"}, {color: "#E4E6F3"}],
     shininess: 18,
     specular: [0.00063, 0.00055, 0.00032],
     ambient: "rgb(100,100,140)",
@@ -43,13 +43,12 @@ const sat = new XYZ("sat", {
         });
     }
 });
-const globus = {
-    target: 'app',
+const globus = new Globe({
     name: "Earth",
     terrain: new GlobusTerrain(),
     layers: [osm, sat],
-    autoActivate: true
-};
+    autoActivate: false
+});
 
 // globus.planet.atmosphereEnabled = true;
 export default globus;
